@@ -8,7 +8,7 @@ async function bootstrap() {
 
   SwaggerInit(app);
 
-  await app.listen(9000);
+  await app.listen(3000);
 
   const appUrl = await app.getUrl();
 

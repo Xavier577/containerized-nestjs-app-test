@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12-alpine
+    networks:
+      - postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nestjs-app
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+  server:
+    image: nestjs-docker-build
+    depends_on:
+      - db
+    networks:
+      - postgres
+    ports:
+      - '3000:3000'
+networks:
+  postgres:
+    driver: bridge
